@@ -1,0 +1,97 @@
+[
+  {
+    "id": "client-follow-up-control-room",
+    "title": "Client follow-up control room",
+    "layer": 3,
+    "userStory": "As a studio owner, I want the agent to review client follow-up context from Gmail, Drive, and WhatsApp, then draft follow-up messages for approval.",
+    "requiredSystems": ["gmail", "drive", "whatsapp"],
+    "requiredCapabilities": ["search_mailbox", "search_files", "read_exported_chat"],
+    "externalActions": ["draft_message"],
+    "maturity": {
+      "layer0": "clear",
+      "layer2": "draft",
+      "manualSuccessCount": 0
+    },
+    "expected": {
+      "recommend": ["gmail-cli", "google-drive-cli", "whatsapp-manual-export"],
+      "block": ["whatsapp-baileys", "vps-cron"],
+      "reasonContains": ["manual success", "approval", "read-only"]
+    }
+  },
+  {
+    "id": "advanced-marketing-engine",
+    "title": "Atomic growth engine",
+    "layer": 3,
+    "userStory": "As the owner, I want the agent to create personalized cold emails and marketing content from research, then prepare drafts and measure responses.",
+    "requiredSystems": ["gmail", "browser", "drive"],
+    "requiredCapabilities": ["search_mailbox", "open_page", "read_docs", "create_draft"],
+    "externalActions": ["create_draft", "publish_content"],
+    "maturity": {
+      "layer0": "clear",
+      "layer2": "stable",
+      "manualSuccessCount": 1
+    },
+    "expected": {
+      "recommend": ["gmail-cli", "browser-harness", "google-drive-cli"],
+      "block": ["gmail-api", "vps-cron"],
+      "reasonContains": ["draft-first", "publishing", "manual success"]
+    }
+  },
+  {
+    "id": "voice-command-demo",
+    "title": "Voice interface demo",
+    "layer": 3,
+    "userStory": "As a student, I want to speak a command and see the agent turn it into an action plan without executing external actions.",
+    "requiredSystems": ["voice", "browser"],
+    "requiredCapabilities": ["command_capture", "speech_output", "open_page"],
+    "externalActions": ["external_action"],
+    "maturity": {
+      "layer0": "clear",
+      "layer2": "stable",
+      "manualSuccessCount": 2
+    },
+    "expected": {
+      "recommend": ["voice-quick-voice", "browser-harness"],
+      "block": ["vps-cron"],
+      "reasonContains": ["interface", "unsent", "approval"]
+    }
+  },
+  {
+    "id": "routine-too-early",
+    "title": "Premature routine request",
+    "layer": 5,
+    "userStory": "As the owner, I want a VPS worker to send daily WhatsApp reminders to leads automatically every morning.",
+    "requiredSystems": ["whatsapp", "routine"],
+    "requiredCapabilities": ["send_message", "scheduled_run"],
+    "externalActions": ["send_message", "scheduled_run"],
+    "maturity": {
+      "layer0": "unclear",
+      "layer2": "missing",
+      "manualSuccessCount": 0
+    },
+    "expected": {
+      "recommend": ["whatsapp-manual-export"],
+      "block": ["whatsapp-baileys", "vps-cron"],
+      "reasonContains": ["Layer 2", "manual success", "external consequences"]
+    }
+  },
+  {
+    "id": "calendar-prep-meeting",
+    "title": "Calendar prep meeting",
+    "layer": 3,
+    "userStory": "As the owner, I want the agent to find available times for a prep Zoom and draft a message asking for approval before scheduling.",
+    "requiredSystems": ["calendar", "gmail"],
+    "requiredCapabilities": ["find_availability", "create_draft"],
+    "externalActions": ["draft_message", "create_event"],
+    "maturity": {
+      "layer0": "clear",
+      "layer2": "stable",
+      "manualSuccessCount": 1
+    },
+    "expected": {
+      "recommend": ["google-calendar-cli", "gmail-cli"],
+      "block": ["vps-cron"],
+      "reasonContains": ["approval", "create_event", "draft-first"]
+    }
+  }
+]

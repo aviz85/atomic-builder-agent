@@ -1,0 +1,20 @@
+{
+  "name": "atomic-builder",
+  "interface": {
+    "displayName": "Atomic Builder"
+  },
+  "plugins": [
+    {
+      "name": "atomic-builder-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/atomic-builder-agent"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}

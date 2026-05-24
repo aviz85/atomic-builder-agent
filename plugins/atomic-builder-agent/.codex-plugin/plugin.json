@@ -1,0 +1,8 @@
+{
+  "name": "atomic-builder-agent",
+  "version": "0.1.0",
+  "description": "Codex-based companion that guides students through the Atomic Business 7-layer model and helps them build agentic applications.",
+  "author": {
+    "name": "Aviz"
+  }
+}

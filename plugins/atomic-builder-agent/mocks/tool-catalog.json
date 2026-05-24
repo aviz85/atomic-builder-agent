@@ -1,0 +1,112 @@
+{
+  "version": "0.1.0",
+  "purpose": "Mock Layer 3 tool catalog for Atomic Builder integration planning.",
+  "preferenceOrder": [
+    "local-cli",
+    "official-api",
+    "mcp-connector",
+    "browser-automation",
+    "manual"
+  ],
+  "tools": [
+    {
+      "id": "gmail-cli",
+      "name": "Gmail CLI",
+      "system": "gmail",
+      "kind": "local-cli",
+      "capabilities": ["read_threads", "search_mailbox", "create_draft"],
+      "risk": "medium",
+      "requiresApproval": ["account_access", "draft_creation"],
+      "neverWithoutApproval": ["send_message"],
+      "smokeTest": "Search for one known thread by subject and create no draft."
+    },
+    {
+      "id": "gmail-api",
+      "name": "Gmail Official API",
+      "system": "gmail",
+      "kind": "official-api",
+      "capabilities": ["read_threads", "search_mailbox", "create_draft", "send_message"],
+      "risk": "high",
+      "requiresApproval": ["oauth_connection", "draft_creation", "send_message"],
+      "neverWithoutApproval": ["send_message"],
+      "smokeTest": "Read metadata for one approved thread without body extraction first."
+    },
+    {
+      "id": "google-drive-cli",
+      "name": "Google Drive CLI",
+      "system": "drive",
+      "kind": "local-cli",
+      "capabilities": ["search_files", "read_docs", "export_docs"],
+      "risk": "medium",
+      "requiresApproval": ["account_access", "document_read"],
+      "neverWithoutApproval": ["share_file", "delete_file"],
+      "smokeTest": "List one approved project folder and read no document body."
+    },
+    {
+      "id": "google-calendar-cli",
+      "name": "Google Calendar CLI",
+      "system": "calendar",
+      "kind": "local-cli",
+      "capabilities": ["read_events", "find_availability", "create_event"],
+      "risk": "high",
+      "requiresApproval": ["account_access", "event_creation"],
+      "neverWithoutApproval": ["create_event", "change_event", "delete_event"],
+      "smokeTest": "Read availability for a manually approved date range."
+    },
+    {
+      "id": "whatsapp-manual-export",
+      "name": "WhatsApp Manual Export",
+      "system": "whatsapp",
+      "kind": "manual",
+      "capabilities": ["read_exported_chat"],
+      "risk": "low",
+      "requiresApproval": ["sample_selection"],
+      "neverWithoutApproval": ["send_message"],
+      "smokeTest": "Parse a sanitized exported chat sample and extract last message only."
+    },
+    {
+      "id": "whatsapp-baileys",
+      "name": "WhatsApp Baileys Bridge",
+      "system": "whatsapp",
+      "kind": "official-api",
+      "capabilities": ["read_chats", "send_message", "send_audio", "send_media"],
+      "risk": "critical",
+      "requiresApproval": ["account_connection", "message_send", "media_send"],
+      "neverWithoutApproval": ["send_message", "send_audio", "send_media"],
+      "smokeTest": "Connect to a test group only, send nothing, verify read-only health."
+    },
+    {
+      "id": "browser-harness",
+      "name": "Browser Harness",
+      "system": "browser",
+      "kind": "browser-automation",
+      "capabilities": ["open_page", "inspect_docs", "click", "fill_form"],
+      "risk": "medium",
+      "requiresApproval": ["authenticated_session", "form_submit"],
+      "neverWithoutApproval": ["submit_form", "purchase", "publish"],
+      "smokeTest": "Open a public documentation page and extract one heading."
+    },
+    {
+      "id": "voice-quick-voice",
+      "name": "Quick Voice Interface",
+      "system": "voice",
+      "kind": "mcp-connector",
+      "capabilities": ["speech_input", "speech_output", "command_capture"],
+      "risk": "medium",
+      "requiresApproval": ["voice_command_execution"],
+      "neverWithoutApproval": ["external_action"],
+      "smokeTest": "Capture a voice command and convert it into an unsent action draft."
+    },
+    {
+      "id": "vps-cron",
+      "name": "VPS Cron Worker",
+      "system": "routine",
+      "kind": "local-cli",
+      "capabilities": ["scheduled_run", "log_output", "health_check"],
+      "risk": "high",
+      "requiresApproval": ["deployment", "schedule_activation"],
+      "neverWithoutApproval": ["external_action", "unsupervised_sending"],
+      "smokeTest": "Run a local dry-run command that writes only to a log file."
+    }
+  ]
+}

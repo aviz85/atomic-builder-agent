@@ -1,0 +1,13 @@
+{
+  "layer_0_human_nucleus": 0,
+  "layer_1_agent_nucleus": 0,
+  "layer_2_environment": 0,
+  "layer_3_tools": 0,
+  "layer_4_skills": 0,
+  "layer_5_routines": 0,
+  "layer_6_cloud_entity": 0,
+  "layer_7_atomic_business": 0,
+  "last_review": null,
+  "blocking_layer": null,
+  "next_actions": []
+}
